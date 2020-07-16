@@ -10,11 +10,11 @@ import { Category } from '../shared/category.model';
 export class CategoryListComponent implements OnInit {
 
   categories: Category[];
-  constructor(private caterogyService: CategoryService) { }
+  constructor(private categoryService: CategoryService) { }
 
 
   ngOnInit(): void {
-    this.caterogyService.getAll().subscribe(
+    this.categoryService.getAll().subscribe(
       (categories: Category[]) => {
         this.categories = categories;
         console.log(categories);
@@ -26,7 +26,7 @@ export class CategoryListComponent implements OnInit {
 
   delete(id: number) {
     confirm('Deseja deletar?');
-    this.caterogyService.deleteCategory(id).subscribe(
+    this.categoryService.deleteCategory(id).subscribe(
     );
 
   }
