@@ -25,18 +25,51 @@
                 Informações sobre o lançamento
             </div>
             <div class="card-body">
-                <div class="form-row">
 
-                    <div class="form-group com-md-4">
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="type">Tipo</label>
+                        <select formControlName="type" id="type" class="form-control">
+                            <option value="expense">Despesa</option>
+                            <option value="revenue">Receita</option>
+                        </select>
+                        <div class="text-danger" *ngIf="entryForm.get('type').invalid && entryForm.get('type').touched">
+                            <div *ngIf="entryForm.get('type').errors.required">dado obrigatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="name">Lançamento</label>
+                        <input formControlName="name" type="text" class="form-control" id="name" placeholder="">
+                        <div class="text-danger" *ngIf="entryForm.get('name').invalid && entryForm.get('name').touched">
+                            <div *ngIf="entryForm.get('name').errors.required">dado obrigatorio</div>
+                            <div *ngIf="entryForm.get('name').errors.minlength">deve ter no minimo 2 caracteres</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="amount">Valor</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">R$</div>
+                            </div>
+                            <input [imask]="imaskConfig" formControlName="amount" type="text" class="form-control text-right" id="amount" placeholder="">
+                        </div>
+                        <div class="text-danger" *ngIf="entryForm.get('amount').invalid && entryForm.get('amount').touched">
+                            <div *ngIf="entryForm.get('amount').errors.required">dado obrigatorio</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <!-- NAME -->
+                    <!-- <div class="form-group col-md-4">
                         <label for="name">Nome</label>
                         <input formControlName="name" type="text" class="form-control" id="name" placeholder="">
                         <div class="text-danger" *ngIf="entryForm.get('name').invalid && entryForm.get('name').touched">
                             <div *ngIf="entryForm.get('name').errors.required">dado obrigatorio</div>
                             <div *ngIf="entryForm.get('name').errors.minlength">deve ter no minimo 2 caracteres</div>
-
                         </div>
-                    </div>
-
+                    </div> -->
+                    <!-- Description -->
                     <div class="form-group col-md-8">
                         <label for="description">Descrição</label>
                         <input formControlName="description" class="form-control" id="description" placeholder="">

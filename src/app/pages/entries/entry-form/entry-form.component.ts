@@ -1,10 +1,10 @@
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { EntryService } from '../shared/entry.service';
+import { AfterContentChecked, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { switchMap } from 'rxjs/operators';
 import { Entry } from '../shared/entry.model';
+import { EntryService } from '../shared/entry.service';
+
 
 @Component({
   selector: 'app-entry-form',
@@ -19,6 +19,16 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   serverErrorMessages: string[] = null;
   submittingForm: boolean = false;
   entry: Entry = new Entry();
+
+  imaskConfig = {
+    mask: Number,
+    scale: 2,
+    thousandsSeparator: '',
+    padFractionalZeros: true,
+    normalizeZeros: true,
+    radix: ','
+
+  };
 
   constructor(
     private fB: FormBuilder,
